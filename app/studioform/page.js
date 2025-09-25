@@ -13,7 +13,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
 
-export default function studioform() {
+export default function Studioform() {
    const searchParams = useSearchParams();
   const router = useRouter();
 
