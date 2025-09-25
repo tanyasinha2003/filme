@@ -33,6 +33,8 @@ import {
   CameraOff,
 } from "lucide-react";
 import Link from "next/link";
+import FeaturesGrid from "@/components/FeaturesGrid";
+import FAQSection from "@/components/FAQSection";
 
 export default function Home() {
   const router = useRouter();
@@ -657,50 +659,7 @@ export default function Home() {
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-12 text-white">
             Features
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {features.map((feature, i) => {
-              const [open, setOpen] = useState(false);
-
-              return (
-                <div
-                  key={i}
-                  className="bg-white/20 backdrop-blur-lg border border-white/30 shadow-lg rounded-2xl px-4 py-3 cursor-pointer transition hover:scale-105 hover:shadow-2xl"
-                  onClick={() => setOpen(!open)}
-                >
-                  {/* Header row (title + chevron) */}
-                  <div className="flex justify-between items-center">
-                    <p className="text-xl font-semibold text-white">
-                      {feature.title}
-                    </p>
-                    <motion.div
-                      animate={{ rotate: open ? 180 : 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="text-white"
-                    >
-                      <ChevronDown className="w-5 h-5" />
-                    </motion.div>
-                  </div>
-
-                  {/* Expanding content */}
-                  <AnimatePresence>
-                    {open && (
-                      <motion.p
-                        id={`feature-desc-${i}`} // ✅ unique ID per feature
-                        key={`feature-content-${i}`} // ✅ unique key too
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4 }}
-                        className="mt-3 text-gray-100 overflow-hidden"
-                      >
-                        {feature.description}
-                      </motion.p>
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            })}
-          </div>
+          <FeaturesGrid  features={features}/>
         </div>
       </section>
 
@@ -709,51 +668,7 @@ export default function Home() {
         <h2 className="text-3xl md:text-5xl font-antonio text-center mb-12">
           FAQs
         </h2>
-        <div className="max-w-3xl mx-auto space-y-4">
-          {[
-            {
-              q: "How do I book the studio?",
-              a: "You can book directly through our website or contact us via phone/email.",
-            },
-            {
-              q: "What’s included in the packages?",
-              a: "All packages include studio access, lighting, and basic equipment. Premium packages include crew and editing support.",
-            },
-            {
-              q: "Do you provide custom packages?",
-              a: "Yes, we can tailor packages to suit your specific project needs.",
-            },
-          ].map((faq, i) => {
-            const [open, setOpen] = useState(false);
-            return (
-              <div
-                key={i}
-                className="border rounded-xl shadow-sm overflow-hidden"
-              >
-                <button
-                  onClick={() => setOpen(!open)}
-                  className="w-full flex justify-between items-center px-6 py-4 text-left"
-                >
-                  <span className="font-semibold">{faq.q}</span>
-                  <span>{open ? "−" : "+"}</span>
-                </button>
-                <AnimatePresence>
-                  {open && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="px-6 pb-4 text-gray-600"
-                    >
-                      {faq.a}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
-        </div>
+        <FAQSection/>
       </section>
       {/* Location */}
       <section className="bg-gray-50 py-16 px-6 md:px-20 text-center">
