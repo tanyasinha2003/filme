@@ -11,6 +11,11 @@ import FloatingWhatsappButton from "@/components/FloatingWhatsappButton";
 import { Star } from "lucide-react"; // make sure lucide-react is installed
 import { CheckCircle, XCircle } from "lucide-react";
 
+// Import Swiper
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination, Autoplay } from "swiper/modules";
 import {
   Mic,
   Package,
@@ -67,81 +72,94 @@ export default function Home() {
     },
   ];
 
+  const images = [
+    "/images/s1.png",
+    "/images/s2.png",
+    "/images/s6.png",
+    "/images/s1.png",
+    "/images/s2.png",
+    "/images/s6.png",
+  ];
+
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <div className="relative h-[100vh] flex flex-col items-center justify-center text-center overflow-hidden">
-        {/* landing image bg */}
-        <img
-          src="/images/landing-bg.png"
-          alt="Background"
-          className="absolute inset-0 lg:w-[54rem] lg:h-[52rem] z-0 lg:top-0 lg:left-[18rem] top-[6rem] left-[1rem] w-[22rem] h-[28rem]"
-        />
-        {/* other images */}
-        <img
-          src="/images/light.png"
-          alt="Background"
-          className="absolute z-0 lg:w-[37rem] lg:h-[37rem] lg:top-[10rem] lg:left-[3rem] -left-[7rem] h-[20rem]"
-        />
-        {/* <img
-          src="/images/camera.png"
-          alt="Background"
-          className="absolute z-0 w-[10rem] h-[10rem] top-[2rem] right-[5rem]"
-        /> */}
-        <img
-          src="/images/mic.png"
-          alt="Background"
-          className="absolute z-0 lg:w-[20rem] lg:h-[20rem] lg:bottom-[5rem] lg:right-[10rem] bottom-[6rem] -right-[2rem] w-[10rem] h-[10rem]"
-        />
-        <img
-          src="/images/vid-rec.png"
-          alt="Background"
-          className="absolute z-0 lg:w-[18rem] lg:h-[18rem] lg:top-[1rem] lg:right-[2rem] scale-x-[-1] -rotate-24 top-0 w-[10rem] h-[10rem] right-[1rem]"
-        />
-        {/* <img
-          src="/images/movie.png"
-          alt="Background"
-          className="absolute z-0 w-[10rem] h-[10rem] left-[38rem] top-[10rem]"
-        /> */}
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-black font-antonio text-[3.5rem] md:text-[6rem] lg:text-[8rem] z-10 drop-shadow-[3px_3px_0px_white] 
-             [text-shadow:_2px_2px_0_#fff,4px_4px_0_#fff,6px_6px_0_#fff]"
-        >
-          Filme Studio
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 1 }}
-          className="text-black text-lg md:text-xl mt-4 z-10 max-w-2xl hidden lg:block"
-        >
-          A Creator’s Playground, Built by Storytellers
-        </motion.p>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 1 }}
-          className="text-black lg:text-lg text-md md:text-xl mt-4 z-10 max-w-2xl block lg:hidden"
-        >
-          A Creator’s Playground,<br></br> Built by Storytellers
-        </motion.p>
+      <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-0 pb-8">
+        {/* Slider */}
         <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 1, duration: 0.5 }}
-          className="lg:mt-6 z-10 absolute lg:static bottom-[5rem] right-[8rem] "
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+          className="w-full mb-10"
         >
-          <button
-            onClick={() => router.push("/studioform")}
-            className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl text-lg shadow-lg "
+          <Swiper
+            modules={[Pagination, Autoplay]}
+            pagination={{ clickable: true }}
+            loop={true}
+            autoplay={{
+              delay: 2000,
+              disableOnInteraction: false,
+            }}
+            breakpoints={{
+              320: { slidesPerView: 1, spaceBetween: 0 }, // no gap on mobile
+              768: { slidesPerView: 3, spaceBetween: 20 },
+            }}
+            className="w-full lg:w-[60rem] h-[26rem] lg:h-[20rem]"
           >
-            Book Now
-          </button>
+            {images.map((src, i) => (
+              <SwiperSlide key={i} className="w-full">
+                <div className="w-full aspect-video">
+                  {" "}
+                  {/* proportional box */}
+                  <Image
+                    src={src}
+                    alt={`Gallery ${i + 1}`}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </motion.div>
+
+        {/* Text & Button Block */}
+        <div className="flex flex-col items-center space-y-3 px-4">
+          {/* Heading */}
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="text-black font-antonio text-[2.5rem] md:text-[5rem] lg:text-[7rem] text-center drop-shadow-[3px_3px_0px_white]
+      [text-shadow:_2px_2px_0_#fff,4px_4px_0_#fff,6px_6px_0_#fff]"
+          >
+            Filme Studio
+          </motion.h1>
+
+          {/* Subheading */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 1 }}
+            className="text-black text-md md:text-xl lg:text-2xl text-center max-w-2xl"
+          >
+            A Creator’s Playground, Built by Storytellers
+          </motion.p>
+
+          {/* Button */}
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 1, duration: 0.5 }}
+          >
+            <button
+              onClick={() => router.push("/studioform")}
+              className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl text-lg shadow-lg"
+            >
+              Book Now
+            </button>
+          </motion.div>
+        </div>
       </div>
 
       {/* About Section */}
@@ -374,16 +392,6 @@ export default function Home() {
               price: "₹28,000 / 8 hrs",
               img: "/images/video.png",
             },
-            {
-              title: "Workshop Package",
-              desc: [
-                "Capacity: 20-30 people",
-                "Hourly rate: ₹4000 / hr",
-                "Booking required 10–15 days in advance",
-              ],
-              price: "₹12,000 / 3 hrs",
-              img: "/images/workshop.png",
-            },
           ].map((pkg, i) => (
             <motion.div
               key={i}
@@ -459,60 +467,66 @@ export default function Home() {
         </div>
       </section>
 
-     
       {/* Amenities Section */}
-<section className="py-16 px-4 md:px-20 bg-gray-50">
-  <motion.h2
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    transition={{ duration: 0.7 }}
-    className="text-2xl md:text-3xl lg:text-5xl font-antonio text-center mb-8 md:mb-12"
-  >
-    Amenities
-  </motion.h2>
+      <section className="py-16 px-4 md:px-20 bg-gray-50">
+        <motion.h2
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.7 }}
+          className="text-2xl md:text-3xl lg:text-5xl font-antonio text-center mb-8 md:mb-12"
+        >
+          Amenities
+        </motion.h2>
 
-  <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5">
-    {[
-      { icon: Mic, label: "5 Podcast Setups" },
-      { icon: Package, label: "Flexible Product Shoot" },
-      { icon: Droplets, label: "RO Water Dispenser" },
-      { icon: Bath, label: "2 Separate Washrooms" },
-      { icon: Wind, label: "Fully Air Conditioned" },
-      { icon: Refrigerator, label: "Refrigerator" },
-      { icon: ParkingCircle, label: "Parking Available" },
-      { icon: User, label: "Green Room" },
-      { icon: Utensils, label: "Small Pantry" },
-      { icon: Shirt, label: "Hangers" },
-      { icon: Lightbulb, label: "Professional Lighting" },
-      { icon: Camera, label: "Professional Camera" },
-      { icon: ImageIcon, label: "Backgrounds" },
-      { icon: Video, label: "Videographer" },
-      { icon: CameraOff, label: "Photographer" },
-      { icon: Bluetooth, label: "Bose Bluetooth Speaker", onRequest: true },
-      { icon: Zap, label: "Hair Dryer / Straightener", onRequest: true },
-      { icon: Wand2, label: "Steam Iron", onRequest: true },
-      { icon: AirVent, label: "Dyson Air Purifier", onRequest: true },
-    ].map(({ icon: Icon, label, onRequest }, i) => (
-      <motion.div
-        key={i}
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: i * 0.05 }}
-        viewport={{ once: true }}
-        className="flex flex-col items-center justify-center text-center bg-white p-2 md:p-4 rounded-2xl shadow-md hover:shadow-lg transition"
-      >
-        <Icon size={20} className="w-5 h-5 md:w-7 md:h-7 mb-1 md:mb-2 text-gray-700" />
-        <p className="text-gray-800 font-medium text-xs md:text-sm">{label}</p>
-        {onRequest && (
-          <span className="text-[10px] md:text-xs text-gray-500 mt-0.5 md:mt-1">
-            *On Request
-          </span>
-        )}
-      </motion.div>
-    ))}
-  </div>
-</section>
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5">
+          {[
+            { icon: Wind, label: "Fully Air Conditioned" },
+            { icon: User, label: "Green Room" },
+            { icon: Droplets, label: "RO Water Dispenser" },
+            { icon: Bath, label: "2 Separate Washrooms" },
 
+            { icon: Refrigerator, label: "Refrigerator" },
+            { icon: ParkingCircle, label: "Parking Available" },
+
+            { icon: Utensils, label: "Small Pantry" },
+
+            { icon: Lightbulb, label: "Professional Lighting" },
+            { icon: Camera, label: "DSLR Camera" },
+            { icon: ImageIcon, label: "White Backdrop" },
+
+            {
+              icon: Bluetooth,
+              label: "Bose Bluetooth Speaker",
+              onRequest: true,
+            },
+            { icon: Zap, label: "Hair Dryer / Straightener", onRequest: true },
+            { icon: Wand2, label: "Steam Iron", onRequest: true },
+            { icon: AirVent, label: "Dyson Air Purifier", onRequest: true },
+          ].map(({ icon: Icon, label, onRequest }, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.05 }}
+              viewport={{ once: true }}
+              className="flex flex-col items-center justify-center text-center bg-white p-2 md:p-4 rounded-2xl shadow-md hover:shadow-lg transition"
+            >
+              <Icon
+                size={20}
+                className="w-5 h-5 md:w-7 md:h-7 mb-1 md:mb-2 text-gray-700"
+              />
+              <p className="text-gray-800 font-medium text-xs md:text-sm">
+                {label}
+              </p>
+              {onRequest && (
+                <span className="text-[10px] md:text-xs text-gray-500 mt-0.5 md:mt-1">
+                  *On Request
+                </span>
+              )}
+            </motion.div>
+          ))}
+        </div>
+      </section>
 
       {/* Studio Rules Section */}
       <section className="py-16 px-6 md:px-20">
@@ -615,7 +629,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Gallery Section */}
+      {/* Gallery Section
       <section className="py-16 px-6 md:px-20">
         <motion.h2
           initial={{ opacity: 0 }}
@@ -646,7 +660,7 @@ export default function Home() {
             )
           )}
         </div>
-      </section>
+      </section> */}
       {/* Studio Features */}
       <section
         className="relative py-16 px-6 md:px-20 bg-cover bg-center"
@@ -659,7 +673,7 @@ export default function Home() {
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-12 text-white">
             Features
           </h2>
-          <FeaturesGrid  features={features}/>
+          <FeaturesGrid features={features} />
         </div>
       </section>
 
@@ -668,7 +682,7 @@ export default function Home() {
         <h2 className="text-3xl md:text-5xl font-antonio text-center mb-12">
           FAQs
         </h2>
-        <FAQSection/>
+        <FAQSection />
       </section>
       {/* Location */}
       <section className="bg-gray-50 py-16 px-6 md:px-20 text-center">

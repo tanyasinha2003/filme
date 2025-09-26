@@ -218,8 +218,10 @@ export default function Studioform() {
                 <option value="podcast">Podcast</option>
                 <option value="still">Still</option>
                 <option value="ad film">Ad Film</option>
-                <option value="baby shoot">Baby Shoot</option>
-                <option value="commercial shoot">Commercial Shoot</option>
+                <option value="birthday shoot">Birthday Shoot</option>
+                <option value="brand shoot">Brand Shoot</option>
+                <option value="brand shoot">Product Shoot</option>
+                <option value="brand shoot">Fashion Shoot</option>
                 <option value="other">Other</option>
               </select>
               {errors.shootType && (
