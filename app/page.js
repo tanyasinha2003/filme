@@ -260,10 +260,10 @@ export default function Home() {
           className="text-center text-lg lg:text-xl md:text-xl text-red-600 font-semibold mb-2 flex items-center justify-center"
         >
           {/* Star next to S */}
-          <span className="inline-flex items-center mr-1 mb-3 lg:mb-0 lg:mr-4 bg-yellow-400 text-white rounded-full p-2 shadow-md">
+          {/* <span className="inline-flex items-center mr-1 mb-3 lg:mb-0 lg:mr-4 bg-yellow-400 text-white rounded-full p-2 shadow-md">
             <Star className="w-4 h-4 fill-current text-white" />
-          </span>
-          Special Offers Available for Oct–Nov 2025
+          </span> */}
+          Special Offers Available for<br></br> Oct–Nov 2025
         </motion.p>
         <p className="text-center text-md lg:text-lg text-gray-700 italic lg:mb-12 my-4">
           * Pre-booking at least 1 week in advance is required for all special

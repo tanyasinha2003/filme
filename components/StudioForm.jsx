@@ -275,7 +275,7 @@ export default function Studioform() {
                   Advanced booking (1 week before) — ₹14000 / 4 hrs
                 </option>
                 <option value="video">Video — ₹28000 / 8 hrs</option>
-                <option value="workshop">Workshop — ₹12000 / 3 hrs</option>
+                {/* <option value="workshop">Workshop — ₹12000 / 3 hrs</option> */}
                 <option value="other">Other</option>
               </select>
               {errors.packageType && (
