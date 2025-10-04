@@ -175,6 +175,7 @@ export default function Home() {
           <source src="/videos/intro-vid.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+        
         {/* Optional overlay for darkening video */}
         <div className="absolute inset-0 bg-black/20" />
       </section>
@@ -363,7 +364,7 @@ export default function Home() {
               original: "₹10000 / hr",
               studentFriendly: true,
               discount: true,
-              img: "/images/birthday.png",
+              img: "/images/birthday2.png",
             },
             {
               title: "College Memories",
@@ -377,7 +378,7 @@ export default function Home() {
               original: "₹10000 / hr",
               studentFriendly: true,
               discount: true,
-              img: "/images/college.png",
+              img: "/images/college2.png",
             },
             {
               title: "LinkedIn & Social Profiles",
@@ -391,7 +392,7 @@ export default function Home() {
               original: "₹12500 / 2 hrs",
               studentFriendly: false,
               discount: true,
-              img: "/images/social.png",
+              img: "/images/social2.png",
             },
             {
               title: "Wedding / Pre-Wedding",
@@ -406,71 +407,8 @@ export default function Home() {
               discount: true,
               img: "/images/wedding.png",
             },
-            {
-              title: "Anniversary Package",
-              desc: ["1 photographer (still)", "Professional lights"],
-              price: "₹8000 / hr",
-              original: "₹10000 / hr",
-              studentFriendly: false,
-              discount: true,
-              img: "/images/anniversary.png",
-            },
-            {
-              title: "Podcast Studio Hire",
-              desc: [
-                "State-of-the-art podcast studio",
-                "Professional acoustics & lighting",
-              ],
-              price: "₹3800 / hr",
-              original: "₹4750 / hr",
-              studentFriendly: false,
-              discount: true,
-              img: "/images/podcast.png",
-            },
-            {
-              title: "E-Commerce Shoot",
-              desc: [
-                "Still + video production",
-                "Professional lighting & setup",
-                "15 products, 5 shots each, 360° with props",
-                "Experienced creative director available",
-                "Extra charges may apply for special requests",
-              ],
-              price: "₹25,000 / hr",
-              original: "₹31250 / hr",
-              studentFriendly: false,
-              discount: true,
-              img: "/images/ecommerce.png",
-            },
-            {
-              title: "Studio Hire (No Support)",
-              desc: [
-                "No photographer or staff support",
-                "Can hire one day in advance",
-              ],
-              price: "₹3800 / hr",
-              img: "/images/studio.png",
-            },
-            {
-              title: "Advanced Booking Studio Hire",
-              desc: [
-                "Hourly Rate: ₹3500 / hr",
-                "Booking required 1 week in advance",
-                "No photographer support included",
-              ],
-              price: "₹14,000 / 4 hrs",
-              img: "/images/studio.png",
-            },
-            {
-              title: "Video Shoot Studio Hire",
-              desc: [
-                "Hourly Rate: ₹3500 / hr",
-                "Booking required 3 days in advance",
-                "Includes video production support",
-              ],
-              price: "₹28,000 / 8 hrs",
-              img: "/images/video.png",
-            },
+            
+            
           ].map((pkg, i) => (
             <motion.div
               key={i}
