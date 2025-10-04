@@ -205,63 +205,72 @@ export default function Home() {
         </motion.p>
       </section>
 
-      {/* Reviews Section */}
-      <section className="py-16 px-6 md:px-20 bg-gray-50">
-        <motion.h2
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.7 }}
-          className="text-3xl md:text-5xl font-antonio text-center mb-12"
-        >
-          Reviews
-        </motion.h2>
+     {/* Reviews Section */}
+<section className="py-16 px-6 md:px-20 bg-gray-50">
+  <motion.h2
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    transition={{ duration: 0.7 }}
+    className="text-3xl md:text-5xl font-antonio text-center mb-12"
+  >
+    Reviews
+  </motion.h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-          <div className="relative rounded-2xl overflow-hidden shadow-lg">
-            <video
-              className="w-full aspect-[9/16] object-cover"
-              controls
-              playsInline
-            >
-              <source src="/videos/review-1.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+    {/* Review 1 */}
+    <div className="relative rounded-2xl overflow-hidden shadow-lg">
+      <video
+        className="w-full aspect-[9/16] object-cover"
+        controls
+        playsInline
+        poster="/images/review-1-preview.png" // <-- Preview image
+      >
+        <source src="/videos/review-1.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
 
-          <div className="relative rounded-2xl overflow-hidden shadow-lg">
-            <video
-              className="w-full aspect-[9/16] object-cover"
-              controls
-              playsInline
-            >
-              <source src="/videos/review-2.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
+    {/* Review 2 */}
+    <div className="relative rounded-2xl overflow-hidden shadow-lg">
+      <video
+        className="w-full aspect-[9/16] object-cover"
+        controls
+        playsInline
+        poster="/images/review-2-preview.png"
+      >
+        <source src="/videos/review-2.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
 
-          <div className="relative rounded-2xl overflow-hidden shadow-lg">
-            <video
-              className="w-full aspect-[9/16] object-cover"
-              controls
-              playsInline
-            >
-              <source src="/videos/review-3.MP4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
+    {/* Review 3 */}
+    <div className="relative rounded-2xl overflow-hidden shadow-lg">
+      <video
+        className="w-full aspect-[9/16] object-cover"
+        controls
+        playsInline
+        poster="/images/review-3-preview.png"
+      >
+        <source src="/videos/review-3.MP4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
 
-          <div className="relative rounded-2xl overflow-hidden shadow-lg">
-            <video
-              className="w-full aspect-[9/16] object-cover"
-              controls
-              playsInline
-            >
-              <source src="/videos/review-4.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-      </section>
+    {/* Review 4 */}
+    <div className="relative rounded-2xl overflow-hidden shadow-lg">
+      <video
+        className="w-full aspect-[9/16] object-cover"
+        controls
+        playsInline
+        poster="/images/review-4-preview.png"
+      >
+        <source src="/videos/review-4.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</section>
+
 
       {/* Packages Section */}
       {/* <section className="bg-gray-50 py-16 px-6 md:px-20">
@@ -464,11 +473,7 @@ export default function Home() {
                       )}&packageType=${encodeURIComponent(pkg.price)}`
                     )
                   }
-                  className={`mt-6 px-6 py-2 text-white font-semibold rounded-full shadow-md hover:scale-105 transition-transform duration-200 ${
-                    pkg.discount
-                      ? "bg-gradient-to-r from-red-500 to-yellow-500"
-                      : "bg-black hover:bg-gray-800"
-                  }`}
+                  className={`mt-6 px-6 py-2 text-white font-semibold rounded-full shadow-md hover:scale-105 transition-transform duration-200 bg-red-600`}
                 >
                   Book Now
                 </button>
