@@ -27,6 +27,18 @@ function FAQSection() {
       q: "Will I lose my security deposit for violations?",
       a: "Yes. Violation of house rules or damages to the property may lead to fines or forfeiture of the security deposit.",
     },
+     {
+    q: "Are there any hidden charges?",
+    a: "Not at all. We maintain transparent pricing for all our services. Everything included in your selected podcast studio package is clearly mentioned, and any add-ons or extras (like editing, branding, or off-site recording) are quoted in advance.",
+  },
+  {
+    q: "Can I take a studio tour or test the setup before booking?",
+    a: "Yes! We offer complimentary studio tours of our Gurgaon podcast studio (by prior appointment). You can also book a short trial session at a nominal cost, which will be adjusted in your final package if you proceed with booking.",
+  },
+  {
+    q: "What are your payment options and cancellation terms?",
+    a: "We accept UPI, bank transfers, credit/debit cards, and cash. To confirm your slot, a 50% advance payment is required. The remaining balance is due after your session. For rescheduling or cancellations, please inform us at least 48 hours in advance to avoid cancellation charges.",
+  },
   ];
 
   // Track open state for each FAQ
