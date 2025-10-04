@@ -175,7 +175,7 @@ export default function Home() {
           <source src="/videos/intro-vid.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        
+
         {/* Optional overlay for darkening video */}
         <div className="absolute inset-0 bg-black/20" />
       </section>
@@ -217,7 +217,6 @@ export default function Home() {
         </motion.h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-        
           <div className="relative rounded-2xl overflow-hidden shadow-lg">
             <video
               className="w-full aspect-[9/16] object-cover"
@@ -229,7 +228,6 @@ export default function Home() {
             </video>
           </div>
 
-        
           <div className="relative rounded-2xl overflow-hidden shadow-lg">
             <video
               className="w-full aspect-[9/16] object-cover"
@@ -241,7 +239,6 @@ export default function Home() {
             </video>
           </div>
 
-   
           <div className="relative rounded-2xl overflow-hidden shadow-lg">
             <video
               className="w-full aspect-[9/16] object-cover"
@@ -253,7 +250,6 @@ export default function Home() {
             </video>
           </div>
 
-      
           <div className="relative rounded-2xl overflow-hidden shadow-lg">
             <video
               className="w-full aspect-[9/16] object-cover"
@@ -407,8 +403,6 @@ export default function Home() {
               discount: true,
               img: "/images/wedding.png",
             },
-            
-            
           ].map((pkg, i) => (
             <motion.div
               key={i}
@@ -482,6 +476,120 @@ export default function Home() {
             </motion.div>
           ))}
         </div>
+      </section>
+
+      {/* Plans & Pricing Section */}
+      <section className="py-16 px-6 md:px-20 bg-white">
+        {/* Section Heading */}
+        <motion.h2
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.7 }}
+          className="text-3xl md:text-5xl font-antonio text-center mb-2"
+        >
+          🎬 Plans & Pricing (2025 Edition)
+        </motion.h2>
+        <p className="text-center text-gray-700 italic mb-12">
+          Because every creator deserves a blockbuster stage.
+        </p>
+
+        {/* Plans */}
+        <div className="space-y-16 max-w-6xl mx-auto">
+          {/* 1. Basanti Package */}
+          <div>
+            <p className="text-2xl md:text-3xl  mb-2">
+              🎙️ 1. The Basanti Package (Space Only) 🐎
+            </p>
+            <p className="text-gray-700 mb-4">
+              💃 Bright, bold, and full of life — bring your own gear, and we’ll
+              bring the perfect vibe.
+            </p>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+              <div className="p-4  rounded-lg shadow-sm bg-gray-50">
+                <p className="font-semibold">2 Hours</p>
+                <p className="text-red-600 font-bold">₹7,600</p>
+              </div>
+              <div className="p-4  rounded-lg shadow-sm bg-gray-50">
+                <p className="font-semibold">4 Hours</p>
+                <p className="text-red-600 font-bold">₹14,000</p>
+              </div>
+              <div className="p-4  rounded-lg shadow-sm bg-gray-50">
+                <p className="font-semibold">8 Hours</p>
+                <p className="text-red-600 font-bold">₹27,000</p>
+              </div>
+              <div className="p-4  rounded-lg shadow-sm bg-gray-50">
+                <p className="font-semibold">Additional Hour</p>
+                <p className="text-red-600 font-bold">₹3,800/hr</p>
+              </div>
+            </div>
+          </div>
+
+          {/* 2. Munna Bhai Package */}
+          <div>
+            <p className="text-2xl md:text-3xl  mb-2">
+              🎥 2. The Munna Bhai Package (Studio + 2 Cameras) ❤️ (Only for podcasts)
+            </p>
+            <p className="text-gray-700 mb-4">
+              🤝 Warm. Fun. Impactful. Perfect for creators, podcasts, and brand
+              content that connects.
+            </p>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+              <div className="p-4  rounded-lg shadow-sm bg-gray-50">
+                <p className="font-semibold">4 Hours</p>
+                <p className="text-red-600 font-bold">₹16,000</p>
+              </div>
+              <div className="p-4  rounded-lg shadow-sm bg-gray-50">
+                <p className="font-semibold">8 Hours</p>
+                <p className="text-red-600 font-bold">₹30,000</p>
+              </div>
+              <div className="p-4  rounded-lg shadow-sm bg-gray-50">
+                <p className="font-semibold">Additional Hour</p>
+                <p className="text-red-600 font-bold">₹3,000/hr</p>
+              </div>
+            </div>
+          </div>
+
+          {/* 3. Don Package */}
+          <div>
+            <p className="text-2xl md:text-3xl mb-2">
+              3. The Don Package (Only for podcasts)
+            </p>
+            <p className="text-gray-700 mb-4">
+              Built for creators who shoot regularly and mean business.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center">
+              <div className="p-4  rounded-lg shadow-sm bg-gray-50">
+                <p className="font-semibold">8hr Shoots</p>
+                <p>3-Camera setup + Operator + Lighting</p>
+                <p className="text-red-600 font-bold">₹78,000</p>
+              </div>
+              <div className="p-4  rounded-lg shadow-sm bg-gray-50">
+                <p className="font-semibold">12 Shoots</p>
+                <p>3-Camera setup + Operator + Lighting</p>
+                <p className="text-red-600 font-bold">₹1,10,000</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Add-On Blockbusters */}
+<div className="mt-16 flex flex-col items-center text-center max-w-3xl mx-auto">
+  <h3 className="text-2xl md:text-3xl mb-2">
+    Add-On Blockbusters
+  </h3>
+  <p className="text-gray-700 mb-4">
+    Any edits on request. Give your content the star treatment.
+  </p>
+  <ul className="list-disc list-inside space-y-2 text-gray-700">
+    <li>Cinematic Edits → on request</li>
+    <li>Reel Cuts / Shorts → on request</li>
+    <li>Custom Set Design & Props → on request</li>
+    <li>BTS “Making Of” Video → on request</li>
+  </ul>
+</div>
       </section>
 
       {/* Amenities Section */}
