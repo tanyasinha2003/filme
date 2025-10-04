@@ -445,12 +445,12 @@ export default function Home() {
                     <p className="text-gray-500 line-through text-sm">
                       {pkg.original}
                     </p>
-                    <p className="text-xl font-semibold text-red-600">
+                    <p className="text-xl font-semibold text-gray-500">
                       {pkg.price}
                     </p>
                   </div>
                 ) : (
-                  <p className="text-xl font-semibold text-red-600">
+                  <p className="text-xl font-semibold text-gray-500">
                     {pkg.price}
                   </p>
                 )}
@@ -498,29 +498,28 @@ export default function Home() {
           {/* 1. Basanti Package */}
           <div>
             <p className="text-2xl md:text-3xl  mb-2">
-              🎙️ 1. The Basanti Package (Space Only) 🐎
+              🎙️ 1. The Basanti Package (Space Only) 
             </p>
             <p className="text-gray-700 mb-4">
-              💃 Bright, bold, and full of life — bring your own gear, and we’ll
-              bring the perfect vibe.
+               Bright, bold, and full of life, bring your own gear. Professional Lights included.
             </p>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
               <div className="p-4  rounded-lg shadow-sm bg-gray-50">
                 <p className="font-semibold">2 Hours</p>
-                <p className="text-red-600 font-bold">₹7,600</p>
+                <p className="text-gray-500 font-bold">₹7,600</p>
               </div>
               <div className="p-4  rounded-lg shadow-sm bg-gray-50">
                 <p className="font-semibold">4 Hours</p>
-                <p className="text-red-600 font-bold">₹14,000</p>
+                <p className="text-gray-500 font-bold">₹14,000</p>
               </div>
               <div className="p-4  rounded-lg shadow-sm bg-gray-50">
                 <p className="font-semibold">8 Hours</p>
-                <p className="text-red-600 font-bold">₹27,000</p>
+                <p className="text-gray-500 font-bold">₹27,000</p>
               </div>
               <div className="p-4  rounded-lg shadow-sm bg-gray-50">
                 <p className="font-semibold">Additional Hour</p>
-                <p className="text-red-600 font-bold">₹3,800/hr</p>
+                <p className="text-gray-500 font-bold">₹3,800/hr</p>
               </div>
             </div>
           </div>
@@ -528,25 +527,25 @@ export default function Home() {
           {/* 2. Munna Bhai Package */}
           <div>
             <p className="text-2xl md:text-3xl  mb-2">
-              🎥 2. The Munna Bhai Package (Studio + 2 Cameras) ❤️ (Only for podcasts)
+              🎥 2. The Munna Bhai Package (Studio + 2 Cameras) (Podcasts)
             </p>
             <p className="text-gray-700 mb-4">
-              🤝 Warm. Fun. Impactful. Perfect for creators, podcasts, and brand
+              Perfect for creators, podcasts, and brand
               content that connects.
             </p>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
               <div className="p-4  rounded-lg shadow-sm bg-gray-50">
                 <p className="font-semibold">4 Hours</p>
-                <p className="text-red-600 font-bold">₹16,000</p>
+                <p className="text-gray-500 font-bold">₹16,000</p>
               </div>
               <div className="p-4  rounded-lg shadow-sm bg-gray-50">
                 <p className="font-semibold">8 Hours</p>
-                <p className="text-red-600 font-bold">₹30,000</p>
+                <p className="text-gray-500 font-bold">₹30,000</p>
               </div>
               <div className="p-4  rounded-lg shadow-sm bg-gray-50">
                 <p className="font-semibold">Additional Hour</p>
-                <p className="text-red-600 font-bold">₹3,000/hr</p>
+                <p className="text-gray-500 font-bold">₹3,000/hr</p>
               </div>
             </div>
           </div>
@@ -554,7 +553,7 @@ export default function Home() {
           {/* 3. Don Package */}
           <div>
             <p className="text-2xl md:text-3xl mb-2">
-              3. The Don Package (Only for podcasts)
+              3. The Don Package (Podcasts)
             </p>
             <p className="text-gray-700 mb-4">
               Built for creators who shoot regularly and mean business.
@@ -564,12 +563,12 @@ export default function Home() {
               <div className="p-4  rounded-lg shadow-sm bg-gray-50">
                 <p className="font-semibold">8hr Shoots</p>
                 <p>3-Camera setup + Operator + Lighting</p>
-                <p className="text-red-600 font-bold">₹78,000</p>
+                <p className="text-gray-500 font-bold">₹78,000</p>
               </div>
               <div className="p-4  rounded-lg shadow-sm bg-gray-50">
                 <p className="font-semibold">12 Shoots</p>
                 <p>3-Camera setup + Operator + Lighting</p>
-                <p className="text-red-600 font-bold">₹1,10,000</p>
+                <p className="text-gray-500 font-bold">₹1,10,000</p>
               </div>
             </div>
           </div>
@@ -584,10 +583,10 @@ export default function Home() {
     Any edits on request. Give your content the star treatment.
   </p>
   <ul className="list-disc list-inside space-y-2 text-gray-700">
-    <li>Cinematic Edits → on request</li>
-    <li>Reel Cuts / Shorts → on request</li>
-    <li>Custom Set Design & Props → on request</li>
-    <li>BTS “Making Of” Video → on request</li>
+    <li>Product Shoot possible</li>
+    <li>Fashion Shoot possible</li>
+    <li>E-commerce Shoot possible</li>
+    <li>Any other Production possible</li>
   </ul>
 </div>
       </section>
