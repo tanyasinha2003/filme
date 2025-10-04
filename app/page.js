@@ -168,8 +168,9 @@ export default function Home() {
           className="w-full h-[60vh] md:h-[80vh] object-cover"
           autoPlay
           loop
-          muted
+          // muted
           playsInline
+          // controls={true}
         >
           <source src="/videos/intro-vid.mp4" type="video/mp4" />
           Your browser does not support the video tag.
