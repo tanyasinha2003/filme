@@ -40,6 +40,7 @@ import {
 import Link from "next/link";
 import FeaturesGrid from "@/components/FeaturesGrid";
 import FAQSection from "@/components/FAQSection";
+import Reviews from "@/components/Reviews";
 
 export default function Home() {
   const router = useRouter();
@@ -161,6 +162,21 @@ export default function Home() {
           </motion.div>
         </div>
       </div>
+      {/* Video Section */}
+      <section className="w-full relative">
+        <video
+          className="w-full h-[60vh] md:h-[80vh] object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source src="/videos/intro-vid.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        {/* Optional overlay for darkening video */}
+        <div className="absolute inset-0 bg-black/20" />
+      </section>
 
       {/* About Section */}
       <section className="py-16 px-6 md:px-20 text-center">
@@ -185,6 +201,68 @@ export default function Home() {
           in advertising and communication, we know what it takes to capture the
           magic whether it’s a 30-second spot or a full-length narrative.
         </motion.p>
+      </section>
+
+      {/* Reviews Section */}
+      <section className="py-16 px-6 md:px-20 bg-gray-50">
+        <motion.h2
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.7 }}
+          className="text-3xl md:text-5xl font-antonio text-center mb-12"
+        >
+          Reviews
+        </motion.h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        
+          <div className="relative rounded-2xl overflow-hidden shadow-lg">
+            <video
+              className="w-full aspect-[9/16] object-cover"
+              controls
+              playsInline
+            >
+              <source src="/videos/review-1.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+        
+          <div className="relative rounded-2xl overflow-hidden shadow-lg">
+            <video
+              className="w-full aspect-[9/16] object-cover"
+              controls
+              playsInline
+            >
+              <source src="/videos/review-2.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+   
+          <div className="relative rounded-2xl overflow-hidden shadow-lg">
+            <video
+              className="w-full aspect-[9/16] object-cover"
+              controls
+              playsInline
+            >
+              <source src="/videos/review-3.MP4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+      
+          <div className="relative rounded-2xl overflow-hidden shadow-lg">
+            <video
+              className="w-full aspect-[9/16] object-cover"
+              controls
+              playsInline
+            >
+              <source src="/videos/review-4.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
       </section>
 
       {/* Packages Section */}
@@ -571,6 +649,52 @@ export default function Home() {
                 <CheckCircle className="text-green-600 mt-1" size={18} />
                 <span>Respect the time slots of other clients.</span>
               </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="text-green-600 mt-1" size={18} />
+                <span>Only masking tape is permitted.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="text-green-600 mt-1" size={18} />
+                <span>Furniture may be moved carefully (not dragged).</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="text-green-600 mt-1" size={18} />
+                <span>
+                  Please seek assistance or request beforehand if you would like
+                  a certain setup.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="text-green-600 mt-1" size={18} />
+                <span>
+                  Switching props between sets requires prior permission.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="text-green-600 mt-1" size={18} />
+                <span>
+                  Please be seated at designated areas only and not where the
+                  shooting is going on.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="text-green-600 mt-1" size={18} />
+                <span>Candles may be used briefly (not left unattended).</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="text-green-600 mt-1" size={18} />
+                <span>
+                  Please declare the number of people coming for the shoot on
+                  the premises.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="text-green-600 mt-1" size={18} />
+                <span>
+                  It is restricted to 5 crew members maximum at one point of
+                  time.
+                </span>
+              </li>
             </ul>
           </motion.div>
 
@@ -593,6 +717,10 @@ export default function Home() {
                   Eating and refreshments are only allowed in the designated
                   space.
                 </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <XCircle className="text-red-600 mt-1" size={18} />
+                <span>Strictly no eating is allowed during the shoot.</span>
               </li>
               {/* <li className="flex items-start gap-2">
           <XCircle className="text-red-600 mt-1" size={18} />
@@ -622,6 +750,30 @@ export default function Home() {
                 <span>
                   In case of littering or damage to property, extra charges will
                   apply.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <XCircle className="text-red-600 mt-1" size={18} />
+                <span>
+                  No dragging of equipment; ensure rubber soles on
+                  stands/tripods.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <XCircle className="text-red-600 mt-1" size={18} />
+                <span>
+                  No drilling/hammering nails; you may use existing nails for
+                  artwork.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <XCircle className="text-red-600 mt-1" size={18} />
+                <span>Sets are not waiting areas – use only for shooting.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <XCircle className="text-red-600 mt-1" size={18} />
+                <span>
+                  Fireworks, smoke machines, and fire are not allowed.
                 </span>
               </li>
             </ul>

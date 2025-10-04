@@ -4,21 +4,35 @@ import { motion, AnimatePresence } from "framer-motion";
 function FAQSection() {
   const faqs = [
     {
-      q: "How do I book the studio?",
-      a: "You can book directly through our website or contact us via phone/email.",
+      q: "What are the payment terms?",
+      a: "18% GST is applicable on all bookings. 50% advance payment is required to block dates. 100% payment must be cleared before the shoot date. An additional refundable security deposit of ₹10,000/day is required at the time of booking, which will be refunded after the shoot subject to inspection for damages.",
     },
     {
-      q: "What’s included in the packages?",
-      a: "All packages include studio access, lighting, and basic equipment. Premium packages include crew and editing support.",
+      q: "What are the studio timings?",
+      a: "Filme Studio operates Monday to Saturday, 9:00 AM – 7:00 PM. Rental is on an 8-hour basis including setup time. A 30-minute grace period is allowed for pack-up, after which ₹3,000/hour will be charged. Rental time starts when the first team member enters (or at the given call time, whichever is earlier) and ends when the last person exits.",
     },
     {
-      q: "Do you provide custom packages?",
-      a: "Yes, we can tailor packages to suit your specific project needs.",
+      q: "What happens in case of damages?",
+      a: "Any damage must be reported immediately to avoid issues later. The client is responsible for damages caused by their team during the shoot. The refundable security deposit will be returned after inspection of the space.",
+    },
+    {
+      q: "What is the cancellation and rescheduling policy?",
+      a: "Rescheduling is allowed up to 7 days prior to the booking date, subject to availability. Cancellations: 7 days prior – Full refund, 6–3 days prior – 50% refund, 48 hours prior – 30% refund, 24 hours prior – No refund.",
+    },
+    {
+      q: "Do you provide equipment?",
+      a: "Filme Studio does not provide cameras. However, we can connect you with our panel of vendors at actuals. ",
+    },
+    {
+      q: "Will I lose my security deposit for violations?",
+      a: "Yes. Violation of house rules or damages to the property may lead to fines or forfeiture of the security deposit.",
     },
   ];
 
   // Track open state for each FAQ
-  const [openIndexes, setOpenIndexes] = useState(Array(faqs.length).fill(false));
+  const [openIndexes, setOpenIndexes] = useState(
+    Array(faqs.length).fill(false)
+  );
 
   const toggleOpen = (index) => {
     const newOpen = [...openIndexes];
