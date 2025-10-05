@@ -8,6 +8,7 @@ import Image from "next/image";
 
 import FloatingWhatsappButton from "./FloatingWhatsappButton";
 import { useRouter } from "next/navigation";
+import Footer from "./Footer";
 
 export default function StudioBookingForm() {
   const searchParams = useSearchParams();
@@ -546,22 +547,7 @@ export default function StudioBookingForm() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black text-white py-10 px-6 md:px-20 text-center">
-        <div className="flex flex-col items-center space-y-4">
-          <Link href="/">
-            <Image
-              src="/images/filme-logo-white.png"
-              alt="Filme Studio Logo"
-              width={150}
-              height={150}
-              className="cursor-pointer"
-            />
-          </Link>
-          <p className="text-gray-400 text-sm">
-            © {new Date().getFullYear()} Filme Studio. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <Footer/>
       <FloatingWhatsappButton />
     </>
   );

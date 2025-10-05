@@ -10,6 +10,7 @@ import FeatureCard from "@/components/FeatureCard";
 import FloatingWhatsappButton from "@/components/FloatingWhatsappButton";
 import { Star } from "lucide-react"; // make sure lucide-react is installed
 import { CheckCircle, XCircle } from "lucide-react";
+import { FaInstagram, FaFacebookF } from "react-icons/fa";
 
 // Import Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -41,6 +42,8 @@ import Link from "next/link";
 import FeaturesGrid from "@/components/FeaturesGrid";
 import FAQSection from "@/components/FAQSection";
 import Reviews from "@/components/Reviews";
+import InstagramSection from "@/components/InstagramSection";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const router = useRouter();
@@ -793,6 +796,10 @@ export default function Home() {
         </h2>
         <FAQSection />
       </section>
+
+      {/* Instagram section */}
+      <InstagramSection />
+
       {/* Location */}
       <section className="bg-gray-50 py-16 px-6 md:px-20 text-center">
         <h2 className="text-3xl md:text-5xl font-antonio mb-6">Location</h2>
@@ -827,22 +834,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black text-white py-10 px-6 md:px-20 text-center">
-        <div className="flex flex-col items-center space-y-4">
-          <Link href="/">
-            <Image
-              src="/images/filme-logo-white.png"
-              alt="Filme Studio Logo"
-              width={150}
-              height={150}
-              className="cursor-pointer"
-            />
-          </Link>
-          <p className="text-gray-400 text-sm">
-            © {new Date().getFullYear()} Filme Studio. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <Footer />
       <FloatingWhatsappButton />
     </div>
   );
