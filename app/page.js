@@ -676,71 +676,29 @@ export default function Home() {
               <CheckCircle className="text-green-600" size={22} />
               Do’s
             </h3>
-            <ul className="space-y-4 text-gray-700">
-              <li className="flex items-start gap-2">
-                <CheckCircle className="text-green-600 mt-1" size={18} />
-                <span>
-                  Arrive at least 15 minutes before your scheduled shoot.
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="text-green-600 mt-1" size={18} />
-                <span>Handle studio equipment with care.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="text-green-600 mt-1" size={18} />
-                <span>Maintain cleanliness during and after the shoot.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="text-green-600 mt-1" size={18} />
-                <span>Respect the time slots of other clients.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="text-green-600 mt-1" size={18} />
-                <span>Only masking tape is permitted.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="text-green-600 mt-1" size={18} />
-                <span>Furniture may be moved carefully (not dragged).</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="text-green-600 mt-1" size={18} />
-                <span>
-                  Please seek assistance or request beforehand if you would like
-                  a certain setup.
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="text-green-600 mt-1" size={18} />
-                <span>
-                  Switching props between sets requires prior permission.
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="text-green-600 mt-1" size={18} />
-                <span>
-                  Please be seated at designated areas only and not where the
-                  shooting is going on.
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="text-green-600 mt-1" size={18} />
-                <span>Candles may be used briefly (not left unattended).</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="text-green-600 mt-1" size={18} />
-                <span>
-                  Please declare the number of people coming for the shoot on
-                  the premises.
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="text-green-600 mt-1" size={18} />
-                <span>
-                  It is restricted to 5 crew members maximum at one point of
-                  time.
-                </span>
-              </li>
+            <ul className="space-y-4">
+              {[
+                "Arrive at least 15 minutes before your scheduled shoot.",
+                "Handle studio equipment with care.",
+                "Maintain cleanliness during and after the shoot.",
+                "Respect the time slots of other clients.",
+                "Only masking tape is permitted.",
+                "Furniture may be moved carefully (not dragged).",
+                "Please seek assistance or request beforehand if you would like a certain setup.",
+                "Switching props between sets requires prior permission.",
+                "Please be seated at designated areas only and not where the shooting is going on.",
+                "Candles may be used briefly (not left unattended).",
+                "Please declare the number of people coming for the shoot on the premises.",
+                "It is restricted to 5 crew members maximum at one point of time.",
+              ].map((item, idx) => (
+                <li key={idx} className="flex gap-2">
+                  <CheckCircle
+                    className="text-green-600 flex-shrink-0"
+                    size={20}
+                  />
+                  <span className="text-gray-700 leading-snug">{item}</span>
+                </li>
+              ))}
             </ul>
           </motion.div>
 
@@ -756,72 +714,25 @@ export default function Home() {
               <XCircle className="text-red-600" size={22} />
               Don’ts
             </h3>
-            <ul className="space-y-4 text-gray-700">
-              <li className="flex items-start gap-2">
-                <XCircle className="text-red-600 mt-1" size={18} />
-                <span>
-                  Eating and refreshments are only allowed in the designated
-                  space.
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <XCircle className="text-red-600 mt-1" size={18} />
-                <span>Strictly no eating is allowed during the shoot.</span>
-              </li>
-              {/* <li className="flex items-start gap-2">
-          <XCircle className="text-red-600 mt-1" size={18} />
-          <span>Do not bring food or drinks inside the studio.</span>
-        </li> */}
-              <li className="flex items-start gap-2">
-                <XCircle className="text-red-600 mt-1" size={18} />
-                <span>No smoking, vaping, or alcohol consumption.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <XCircle className="text-red-600 mt-1" size={18} />
-                <span>
-                  Don’t tamper with lighting or props without assistance.
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <XCircle className="text-red-600 mt-1" size={18} />
-                <span>No loud music unless discussed with the team.</span>
-              </li>
-
-              <li className="flex items-start gap-2">
-                <XCircle className="text-red-600 mt-1" size={18} />
-                <span>No children or pets allowed inside the studio.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <XCircle className="text-red-600 mt-1" size={18} />
-                <span>
-                  In case of littering or damage to property, extra charges will
-                  apply.
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <XCircle className="text-red-600 mt-1" size={18} />
-                <span>
-                  No dragging of equipment; ensure rubber soles on
-                  stands/tripods.
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <XCircle className="text-red-600 mt-1" size={18} />
-                <span>
-                  No drilling/hammering nails; you may use existing nails for
-                  artwork.
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <XCircle className="text-red-600 mt-1" size={18} />
-                <span>Sets are not waiting areas – use only for shooting.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <XCircle className="text-red-600 mt-1" size={18} />
-                <span>
-                  Fireworks, smoke machines, and fire are not allowed.
-                </span>
-              </li>
+            <ul className="space-y-4">
+              {[
+                "Eating and refreshments are only allowed in the designated space.",
+                "Strictly no eating is allowed during the shoot.",
+                "No smoking, vaping, or alcohol consumption.",
+                "Don’t tamper with lighting or props without assistance.",
+                "No loud music unless discussed with the team.",
+                "No children or pets allowed inside the studio.",
+                "In case of littering or damage to property, extra charges will apply.",
+                "No dragging of equipment; ensure rubber soles on stands/tripods.",
+                "No drilling/hammering nails; you may use existing nails for artwork.",
+                "Sets are not waiting areas – use only for shooting.",
+                "Fireworks, smoke machines, and fire are not allowed.",
+              ].map((item, idx) => (
+                <li key={idx} className="flex gap-2">
+                  <XCircle className="text-red-600 flex-shrink-0" size={20} />
+                  <span className="text-gray-700 leading-snug">{item}</span>
+                </li>
+              ))}
             </ul>
           </motion.div>
         </div>
