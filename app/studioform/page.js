@@ -6,6 +6,7 @@ export default function Page() {
   return (
     <Suspense fallback={<p className="text-center mt-20">Loading Studio Form...</p>}>
       <Studioform />
+      
     </Suspense>
   );
 }

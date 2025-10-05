@@ -205,72 +205,71 @@ export default function Home() {
         </motion.p>
       </section>
 
-     {/* Reviews Section */}
-<section className="py-16 px-6 md:px-20 bg-gray-50">
-  <motion.h2
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    transition={{ duration: 0.7 }}
-    className="text-3xl md:text-5xl font-antonio text-center mb-12"
-  >
-    Reviews
-  </motion.h2>
+      {/* Reviews Section */}
+      <section className="py-16 px-6 md:px-20 bg-gray-50">
+        <motion.h2
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.7 }}
+          className="text-3xl md:text-5xl font-antonio text-center mb-12"
+        >
+          Reviews
+        </motion.h2>
 
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-    {/* Review 1 */}
-    <div className="relative rounded-2xl overflow-hidden shadow-lg">
-      <video
-        className="w-full aspect-[9/16] object-cover"
-        controls
-        playsInline
-        poster="/images/review-1-preview.png" // <-- Preview image
-      >
-        <source src="/videos/review-1.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          {/* Review 1 */}
+          <div className="relative rounded-2xl overflow-hidden shadow-lg">
+            <video
+              className="w-full aspect-[9/16] object-cover"
+              controls
+              playsInline
+              poster="/images/review-1-preview.png" // <-- Preview image
+            >
+              <source src="/videos/review-1.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
 
-    {/* Review 2 */}
-    <div className="relative rounded-2xl overflow-hidden shadow-lg">
-      <video
-        className="w-full aspect-[9/16] object-cover"
-        controls
-        playsInline
-        poster="/images/review-2-preview.png"
-      >
-        <source src="/videos/review-2.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
+          {/* Review 2 */}
+          <div className="relative rounded-2xl overflow-hidden shadow-lg">
+            <video
+              className="w-full aspect-[9/16] object-cover"
+              controls
+              playsInline
+              poster="/images/review-2-preview.png"
+            >
+              <source src="/videos/review-2.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
 
-    {/* Review 3 */}
-    <div className="relative rounded-2xl overflow-hidden shadow-lg">
-      <video
-        className="w-full aspect-[9/16] object-cover"
-        controls
-        playsInline
-        poster="/images/review-3-preview.png"
-      >
-        <source src="/videos/review-3.MP4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
+          {/* Review 3 */}
+          <div className="relative rounded-2xl overflow-hidden shadow-lg">
+            <video
+              className="w-full aspect-[9/16] object-cover"
+              controls
+              playsInline
+              poster="/images/review-3-preview.png"
+            >
+              <source src="/videos/review-3.MP4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
 
-    {/* Review 4 */}
-    <div className="relative rounded-2xl overflow-hidden shadow-lg">
-      <video
-        className="w-full aspect-[9/16] object-cover"
-        controls
-        playsInline
-        poster="/images/review-4-preview.png"
-      >
-        <source src="/videos/review-4.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  </div>
-</section>
-
+          {/* Review 4 */}
+          <div className="relative rounded-2xl overflow-hidden shadow-lg">
+            <video
+              className="w-full aspect-[9/16] object-cover"
+              controls
+              playsInline
+              poster="/images/review-4-preview.png"
+            >
+              <source src="/videos/review-4.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </section>
 
       {/* Packages Section */}
       {/* <section className="bg-gray-50 py-16 px-6 md:px-20">
@@ -468,9 +467,7 @@ export default function Home() {
                 <button
                   onClick={() =>
                     router.push(
-                      `/studioform?shootType=${encodeURIComponent(
-                        pkg.title
-                      )}&packageType=${encodeURIComponent(pkg.price)}`
+                      `/studioform?shootType=${encodeURIComponent(pkg.title)}`
                     )
                   }
                   className={`mt-6 px-6 py-2 text-white font-semibold rounded-full shadow-md hover:scale-105 transition-transform duration-200 bg-red-600`}
@@ -503,10 +500,11 @@ export default function Home() {
           {/* 1. Basanti Package */}
           <div>
             <p className="text-2xl md:text-3xl  mb-2">
-              🎙️ 1. The Basanti Package (Space Only) 
+              🎙️ 1. The Basanti Package (Space Only)
             </p>
             <p className="text-gray-700 mb-4">
-               Bright, bold, and full of life, bring your own gear. Professional Lights included.
+              Bright, bold, and full of life, bring your own gear. Professional
+              Lights included.
             </p>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
@@ -535,8 +533,7 @@ export default function Home() {
               🎥 2. The Munna Bhai Package (Studio + 2 Cameras) (Podcasts)
             </p>
             <p className="text-gray-700 mb-4">
-              Perfect for creators, podcasts, and brand
-              content that connects.
+              Perfect for creators, podcasts, and brand content that connects.
             </p>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
@@ -580,20 +577,18 @@ export default function Home() {
         </div>
 
         {/* Add-On Blockbusters */}
-<div className="mt-16 flex flex-col items-center text-center max-w-3xl mx-auto">
-  <h3 className="text-2xl md:text-3xl mb-2">
-    Add-On Blockbusters
-  </h3>
-  <p className="text-gray-700 mb-4">
-    Any edits on request. Give your content the star treatment.
-  </p>
-  <ul className="list-disc list-inside space-y-2 text-gray-700">
-    <li>Product Shoot possible</li>
-    <li>Fashion Shoot possible</li>
-    <li>E-commerce Shoot possible</li>
-    <li>Any other Production possible</li>
-  </ul>
-</div>
+        <div className="mt-16 flex flex-col items-center text-center max-w-3xl mx-auto">
+          <h3 className="text-2xl md:text-3xl mb-2">Add-On Blockbusters</h3>
+          <p className="text-gray-700 mb-4">
+            Any edits on request. Give your content the star treatment.
+          </p>
+          <ul className="list-disc list-inside space-y-2 text-gray-700">
+            <li>Product Shoot possible</li>
+            <li>Fashion Shoot possible</li>
+            <li>E-commerce Shoot possible</li>
+            <li>Any other Production possible</li>
+          </ul>
+        </div>
       </section>
 
       {/* Amenities Section */}

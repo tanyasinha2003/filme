@@ -1,51 +1,58 @@
-import { initializeApp, getApps, getApp } from "firebase/app";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
-import { NextResponse } from "next/server";
+import { Resend } from "resend";
 
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.FIREBASE_PROJECT_ID,
-};
-
-// Initialize Firebase once
-const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-const db = getFirestore(app);
-
-export async function POST(request) {
+export async function POST(req) {
   try {
-    const body = await request.json();
-    const {
-      firstName,
-      lastName,
-      phone,
-      email,
-      date,
-      shootType,
-      packageType,
-      message,
-      shootTypeOther,
-      packageOther,
-    } = body;
+    const data = await req.json();
 
-    await addDoc(collection(db, "studio"), {
-      firstName,
-      lastName,
-      phone,
+    const {
+      name,
       email,
+      phone,
       date,
+      duration,
+      selectedPlan,
+      selectedSpecial,
       shootType,
-      packageType,
-      message,
-      shootTypeOther,
-      packageOther,
-      createdAt: new Date(),
+      amenities,
+      otherShootType,
+    } = data;
+
+    const selected = selectedPlan || selectedSpecial;
+
+    // Compose email content
+    const emailContent = `
+      <h2>New Studio Booking</h2>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Phone:</strong> ${phone}</p>
+      <p><strong>Selected Plan / Special:</strong> ${selected}</p>
+       <p><strong>Shoot Type:</strong> ${shootType === "other" ? otherShootType || "None" : shootType}</p>
+
+      <p><strong>Date:</strong> ${date}</p>
+      <p><strong>Duration:</strong> ${duration} hr(s)</p>
+      <p><strong>Amenities:</strong> ${
+        amenities?.length ? amenities.join(", ") : "None"
+      }</p>
+    `;
+
+    // Send email
+    await resend.emails.send({
+      from: "noreply@filmestudio.com", // must be verified in Resend
+      to: "filmestudiogurgaon@gmail.com", // email where you want to receive booking info
+      subject: `New Studio Booking: ${selected}`,
+      html: emailContent,
     });
 
-    return NextResponse.json({ success: true });
+    return new Response(
+      JSON.stringify({ message: "Email sent successfully!" }),
+      { status: 200 }
+    );
   } catch (err) {
-    console.error("Firestore error:", err);
-    return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
+    console.error(err);
+    return new Response(JSON.stringify({ error: "Failed to send email." }), {
+      status: 500,
+    });
   }
 }

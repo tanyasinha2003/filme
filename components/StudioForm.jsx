@@ -1,373 +1,463 @@
 "use client";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 
-import React from "react";
+import Link from "next/link";
 
 import Image from "next/image";
 
-import { motion } from "framer-motion";
-import { useState } from "react";
-import FloatingWhatsappButton from "@/components/FloatingWhatsappButton";
+import FloatingWhatsappButton from "./FloatingWhatsappButton";
 import { useRouter } from "next/navigation";
 
-import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-
-
-export default function Studioform() {
-   const searchParams = useSearchParams();
+export default function StudioBookingForm() {
+  const searchParams = useSearchParams();
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    phone: "",
-    email: "",
+    selectedPlan: "",
+    selectedSpecial: "",
     date: "",
-    shootType: searchParams.get("shootType") ? "other": "",
-    packageType: searchParams.get("packageType") ? "other": "",
-    message: "",
-    packageOther: searchParams.get("packageType") || "",
-    shootTypeOther: searchParams.get("shootType") || "",
+    duration: "",
+    name: "",
+    email: "",
+    phone: "",
+    shootType: "",
+    otherShootType: "", // <-- new field
+    amenities: [],
   });
 
-  const [errors, setErrors] = useState({});
+  const studioPlans = [
+    {
+      title: "Basanti Package",
+      desc: "Bright, bold, and full of life — bring your own gear.",
+      price: "From ₹7,600",
+    },
+    {
+      title: "Munna Bhai Package",
+      desc: "Perfect for podcasts & brand content.",
+      price: "From ₹16,000",
+    },
+    {
+      title: "Don Package",
+      desc: "Built for creators who mean business.",
+      price: "From ₹78,000",
+    },
+  ];
+
+  const specialPackages = [
+    "Birthday Shoot",
+    "College Memories",
+    "LinkedIn & Social Profiles",
+    "Wedding / Pre-Wedding",
+  ];
+
+  const amenitiesList = [
+    "Bose Bluetooth Speaker",
+    "Hair Dryer / Straightener",
+    "Steam Iron",
+    "Dyson Air Purifier",
+  ];
+
+  // 🟡 Preselect special package from search param
+  useEffect(() => {
+    const shootType = searchParams.get("shootType");
+    if (shootType && specialPackages.includes(shootType)) {
+      setFormData((prev) => ({
+        ...prev,
+        selectedSpecial: shootType,
+        selectedPlan: "",
+      }));
+    }
+  }, [searchParams]);
+
+  const handlePlanSelect = (plan) => {
+    setFormData({
+      ...formData,
+      selectedPlan: formData.selectedPlan === plan ? "" : plan,
+      selectedSpecial: "",
+    });
+  };
+
+  const handleSpecialSelect = (e) => {
+    setFormData({
+      ...formData,
+      selectedSpecial: e.target.value,
+      selectedPlan: "",
+    });
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const validate = () => {
-    let tempErrors = {};
-
-    if (!formData.firstName.trim())
-      tempErrors.firstName = "First name is required.";
-    if (!formData.lastName.trim())
-      tempErrors.lastName = "Last name is required.";
-
-    if (!formData.phone.trim()) {
-      tempErrors.phone = "Phone number is required.";
-    } else if (!/^\d{10,}$/.test(formData.phone)) {
-      tempErrors.phone = "Enter a valid phone number (10+ digits).";
-    }
-
-    if (!formData.email.trim()) {
-      tempErrors.email = "Email is required.";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      tempErrors.email = "Enter a valid email.";
-    }
-
-    if (!formData.date) tempErrors.date = "Date is required.";
-    if (!formData.shootType)
-      tempErrors.shootType = "Please select a shoot type.";
-    if (!formData.packageType)
-      tempErrors.packageType = "Please choose a package.";
-
-    setErrors(tempErrors);
-    return Object.keys(tempErrors).length === 0;
+  const handleAmenityToggle = (amenity) => {
+    setFormData((prev) => {
+      const alreadySelected = prev.amenities.includes(amenity);
+      return {
+        ...prev,
+        amenities: alreadySelected
+          ? prev.amenities.filter((a) => a !== amenity)
+          : [...prev.amenities, amenity],
+      };
+    });
   };
+  function validate() {
+    if (!formData) {
+      alert("Form data is missing.");
+      return false;
+    }
+
+    // Must select either a studio plan OR a special package
+    if (!formData.selectedPlan && !formData.selectedSpecial) {
+      alert("Please choose a studio plan or select a special package.");
+      return false;
+    }
+
+    // Type of shoot required
+    if (!formData.shootType) {
+      alert("Please select the type of shoot.");
+      return false;
+    }
+
+    // If "other" is selected, the text field must be filled
+    if (formData.shootType === "other" && !formData.otherShootType.trim()) {
+      alert("Please specify your shoot type.");
+      return false;
+    }
+
+    // Name required
+    if (!formData.name.trim()) {
+      alert("Please enter your full name.");
+      return false;
+    }
+
+    // Phone required and must be 10 digits
+    const phoneRegex = /^\d{10}$/;
+    if (!formData.phone || !phoneRegex.test(formData.phone)) {
+      alert("Please enter a valid 10-digit phone number.");
+      return false;
+    }
+
+    // Email required and must be valid
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email || !emailRegex.test(formData.email)) {
+      alert("Please enter a valid email address.");
+      return false;
+    }
+
+    // Preferred date required
+    if (!formData.date) {
+      alert("Please select a preferred date.");
+      return false;
+    }
+
+    // Duration required
+    if (!formData.duration) {
+      alert("Please select the duration.");
+      return false;
+    }
+
+    // All validations passed
+    return true;
+  }
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const selected = formData.selectedPlan || formData.selectedSpecial;
+  //   alert(
+  //     `Booking submitted for: ${selected}\nShoot Type: ${formData.shootType}\nDuration: ${formData.duration} hr(s)\nAmenities: ${
+  //       formData.amenities.join(", ") || "None"
+  //     }`
+  //   );
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    if (validate()) {
-      console.log("Form Submitted ✅", formData);
-      const res = await fetch("/api/submitStudioForm", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-      if (res.ok) {
-        setLoading(false);
-        router.push("/thankyou");
+    try {
+      if (validate()) {
+        const response = await fetch("/api/submitStudioForm", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          setLoading(false);
+          // alert("Booking submitted! We'll contact you soon.");
+          router.push("/thankyou");
+
+          // Reset form if needed
+          setFormData({
+            selectedPlan: "",
+            selectedSpecial: "",
+            date: "",
+            duration: "",
+            name: "",
+            email: "",
+            phone: "",
+            shootType: "",
+            amenities: [],
+          });
+        } else {
+          alert(result.error || "Something went wrong.");
+        }
       }
+    } catch (err) {
+      console.error(err);
+      // alert("Failed to submit booking.");
     }
   };
 
   return (
     <>
-      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-8 px-6 pt-[4rem] pb-[2rem]">
-        {/* Form Section */}
-        <div className="flex-1">
-          <h1 className="text-[3rem] font-bold mb-6">Book Your Studio</h1>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {/* First Name & Last Name */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label
-                  htmlFor="firstName"
-                  className="block text-sm font-bold text-gray-700 mb-1"
-                >
-                  First Name
-                </label>
-                <input
-                  type="text"
-                  name="firstName"
-                  placeholder="First Name"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  className="border rounded-lg px-4 py-2 w-full"
-                />
-                {errors.firstName && (
-                  <p className="text-red-500 text-sm">{errors.firstName}</p>
-                )}
-              </div>
+      <div className="max-w-4xl mx-auto mt-10 p-6 ">
+        <h2 className="text-3xl font-bold mb-6 text-center">
+          🎙️ Book Your Studio
+        </h2>
 
-              <div>
-                <label
-                  htmlFor="lastName"
-                  className="block text-sm font-bold text-gray-700 mb-1"
-                >
-                  Last Name
-                </label>
-                <input
-                  type="text"
-                  name="lastName"
-                  placeholder="Last Name"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  className="border rounded-lg px-4 py-2 w-full"
-                />
-                {errors.lastName && (
-                  <p className="text-red-500 text-sm">{errors.lastName}</p>
-                )}
-              </div>
+        <form onSubmit={handleSubmit} className="space-y-8">
+          {/* Step 1: Choose a Plan */}
+          <div>
+            <label className="block text-sm font-semibold mb-3">
+              Choose a Studio Plan
+            </label>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {studioPlans.map((plan) => {
+                const selected = formData.selectedPlan === plan.title;
+                return (
+                  <button
+                    type="button"
+                    key={plan.title}
+                    onClick={() => handlePlanSelect(plan.title)}
+                    disabled={!!formData.selectedSpecial}
+                    className={`p-4 rounded-xl border-2 text-left transition-all ${
+                      selected
+                        ? "border-black bg-gray-100"
+                        : formData.selectedSpecial
+                          ? "border-gray-200 opacity-50 cursor-not-allowed"
+                          : "border-gray-300 hover:border-black"
+                    }`}
+                  >
+                    <p className="font-semibold text-lg">{plan.title}</p>
+                    <p className="text-gray-600 text-sm mt-1">{plan.desc}</p>
+                    <p className="text-gray-900 font-bold mt-2">{plan.price}</p>
+                  </button>
+                );
+              })}
             </div>
+          </div>
 
-            {/* Phone */}
+          {/* Step 2: OR Select a Special Package */}
+          <div>
+            <label className="block text-sm font-semibold mb-2">
+              Or Select a Special Package
+            </label>
+            <select
+              className="w-full border rounded-lg px-4 py-3"
+              value={formData.selectedSpecial}
+              onChange={handleSpecialSelect}
+              disabled={!!formData.selectedPlan}
+            >
+              <option value="">Select Special Package</option>
+              {specialPackages.map((pkg) => (
+                <option key={pkg} value={pkg}>
+                  {pkg}
+                </option>
+              ))}
+            </select>
+            {formData.selectedPlan && (
+              <p className="text-sm text-gray-500 mt-1">
+                (Special packages disabled — a plan is already selected)
+              </p>
+            )}
+          </div>
+
+          {/* Step 3: Type of Shoot */}
+          <div>
+            <label className="block text-sm font-semibold mb-2">
+              Type of Shoot
+            </label>
+            <select
+              name="shootType"
+              className="w-full border rounded-lg px-4 py-3"
+              value={formData.shootType}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select Type of Shoot</option>
+              <option value="reel">Reel</option>
+              <option value="wedding">Wedding</option>
+              <option value="podcast">Podcast</option>
+              <option value="still">Still</option>
+              <option value="ad film">Ad Film</option>
+              <option value="birthday shoot">Birthday Shoot</option>
+              <option value="brand shoot">Brand Shoot</option>
+              <option value="product shoot">Product Shoot</option>
+              <option value="fashion shoot">Fashion Shoot</option>
+              <option value="other">Other</option>
+            </select>
+
+            {/* Conditional field for "Other" */}
+            {formData.shootType === "other" && (
+              <input
+                type="text"
+                name="otherShootType"
+                placeholder="Please specify your shoot type"
+                className="w-full border rounded-lg px-4 py-2 mt-2"
+                value={formData.otherShootType}
+                onChange={handleChange}
+                required
+              />
+            )}
+          </div>
+
+          {/* Step 4: Optional Amenities (Checkboxes) */}
+          <div>
+            <label className="block text-sm font-semibold mb-3">
+              On Request Amenities{" "}
+              <span className="text-gray-500 text-sm">(optional)</span>
+            </label>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {amenitiesList.map((amenity) => (
+                <label
+                  key={amenity}
+                  className="flex items-center gap-2 border rounded-lg px-4 py-3 hover:bg-gray-50 cursor-pointer"
+                >
+                  <input
+                    type="checkbox"
+                    checked={formData.amenities.includes(amenity)}
+                    onChange={() => handleAmenityToggle(amenity)}
+                    className="w-4 h-4 accent-black"
+                  />
+                  <span className="text-gray-800">{amenity}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Step 5: Personal Info */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label
-                htmlFor="phone"
-                className="block text-sm font-bold text-gray-700 mb-1"
-              >
-                Mobile Number
+              <label className="block text-sm font-semibold mb-1">
+                Full Name
               </label>
+              <input
+                type="text"
+                name="name"
+                required
+                className="w-full border rounded-lg px-4 py-2"
+                value={formData.name}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold mb-1">Phone</label>
               <input
                 type="tel"
                 name="phone"
-                placeholder="Phone"
+                required
+                className="w-full border rounded-lg px-4 py-2"
                 value={formData.phone}
                 onChange={handleChange}
-                className="border rounded-lg px-4 py-2 w-full"
               />
-              {errors.phone && (
-                <p className="text-red-500 text-sm">{errors.phone}</p>
-              )}
             </div>
-
-            {/* Email */}
             <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-bold text-gray-700 mb-1"
-              >
-                Email ID
-              </label>
+              <label className="block text-sm font-semibold mb-1">Email</label>
               <input
                 type="email"
                 name="email"
-                placeholder="Email"
+                required
+                className="w-full border rounded-lg px-4 py-2"
                 value={formData.email}
                 onChange={handleChange}
-                className="border rounded-lg px-4 py-2 w-full"
               />
-              {errors.email && (
-                <p className="text-red-500 text-sm">{errors.email}</p>
-              )}
             </div>
+          </div>
 
-            {/* Date */}
+          {/* Step 6: Date and Duration */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label
-                htmlFor="date"
-                className="block text-sm font-bold text-gray-700 mb-1"
-              >
-                Booking Date
+              <label className="block text-sm font-semibold mb-1">
+                Preferred Date
               </label>
               <input
                 type="date"
                 name="date"
+                required
+                className="w-full border rounded-lg px-4 py-2"
                 value={formData.date}
                 onChange={handleChange}
-                className="border rounded-lg px-4 py-2 w-full"
               />
-              {errors.date && (
-                <p className="text-red-500 text-sm">{errors.date}</p>
-              )}
             </div>
 
-            {/* Type of Shoot */}
             <div>
-              <label
-                htmlFor="shootType"
-                className="block text-sm font-bold text-gray-700 mb-1"
-              >
-                Type of Shoot
+              <label className="block text-sm font-semibold mb-1">
+                Duration
               </label>
-              <select
-                name="shootType"
-                value={formData.shootType}
-                onChange={handleChange}
-                className="border rounded-lg px-4 py-2 w-full"
-              >
-                <option value="">Select Type of Shoot</option>
-                <option value="reel">Reel</option>
-                <option value="wedding">Wedding</option>
-                <option value="podcast">Podcast</option>
-                <option value="still">Still</option>
-                <option value="ad film">Ad Film</option>
-                <option value="birthday shoot">Birthday Shoot</option>
-                <option value="brand shoot">Brand Shoot</option>
-                <option value="brand shoot">Product Shoot</option>
-                <option value="brand shoot">Fashion Shoot</option>
-                <option value="other">Other</option>
-              </select>
-              {errors.shootType && (
-                <p className="text-red-500 text-sm">{errors.shootType}</p>
-              )}
+              <div className="flex items-center border rounded-lg px-4">
+                <select
+                  name="duration"
+                  required
+                  className="flex-1 py-2 bg-transparent outline-none"
+                  value={formData.duration}
+                  onChange={handleChange}
+                >
+                  <option value="">Select</option>
+                  {[...Array(12)].map((_, i) => (
+                    <option key={i + 1} value={i + 1}>
+                      {i + 1}
+                    </option>
+                  ))}
+                </select>
+                <span className="text-gray-600 ml-2">Hours</span>
+              </div>
+            </div>
+          </div>
 
-              {/* Show extra input if "other" is selected */}
-              {formData.shootType === "other" && (
-                <div className="mt-2">
-                  <label
-                    htmlFor="shootTypeOther"
-                    className="block text-sm font-bold text-gray-700 mb-1"
-                  >
-                    Specify Other Shoot Type
-                  </label>
-                  <input
-                    type="text"
-                    name="shootTypeOther"
-                    placeholder="Please specify your shoot type"
-                    value={formData.shootTypeOther || ""}
-                    onChange={handleChange}
-                    className="border rounded-lg px-4 py-2 w-full"
-                    required
-                  />
-                  {errors.shootTypeOther && (
-                    <p className="text-red-500 text-sm">
-                      {errors.shootTypeOther}
-                    </p>
-                  )}
-                </div>
+          {/* Step 7: Summary */}
+          {(formData.selectedPlan || formData.selectedSpecial) && (
+            <div className="p-4 bg-gray-50 rounded-lg border mt-4">
+              <p className="font-semibold">
+                Selected:{" "}
+                <span className="text-black">
+                  {formData.selectedPlan || formData.selectedSpecial}
+                </span>
+              </p>
+              {formData.duration && (
+                <p className="text-gray-700 text-sm mt-1">
+                  Duration: {formData.duration} hour
+                  {formData.duration > 1 ? "s" : ""}
+                </p>
+              )}
+              {formData.shootType && (
+                <p className="text-gray-700 text-sm mt-1">
+                  Shoot Type: {formData.shootType}
+                </p>
+              )}
+              {formData.amenities.length > 0 && (
+                <p className="text-gray-700 text-sm mt-1">
+                  Amenities: {formData.amenities.join(", ")}
+                </p>
               )}
             </div>
+          )}
 
-            {/* Package */}
-            <div>
-              <label
-                htmlFor="packageType"
-                className="block text-sm font-bold text-gray-700 mb-1"
-              >
-                Package Type
-              </label>
-              <select
-                name="packageType"
-                value={formData.packageType}
-                onChange={handleChange}
-                className="border rounded-lg px-4 py-2 w-full"
-              >
-                <option value="">Choose a Package</option>
-                <option value="hourly">Shoot anything per hour — ₹3800</option>
-                <option value="advanced">
-                  Advanced booking (1 week before) — ₹14000 / 4 hrs
-                </option>
-                <option value="video">Video — ₹28000 / 8 hrs</option>
-                {/* <option value="workshop">Workshop — ₹12000 / 3 hrs</option> */}
-                <option value="other">Other</option>
-              </select>
-              {errors.packageType && (
-                <p className="text-red-500 text-sm">{errors.packageType}</p>
-              )}
-
-              {/* Show extra input if "other" is selected */}
-              {formData.packageType === "other" && (
-                <div className="mt-2">
-                  <label
-                    htmlFor="date"
-                    className="block text-sm font-bold text-gray-700 mb-1"
-                  >
-                    Your Package Proposal
-                  </label>
-                  <input
-                    type="text"
-                    name="packageOther"
-                    placeholder="Please specify your package proposal"
-                    value={formData.packageOther || ""}
-                    onChange={handleChange}
-                    className="border rounded-lg px-4 py-2 w-full"
-                    required
-                  />
-                  {errors.packageOther && (
-                    <p className="text-red-500 text-sm">
-                      {errors.packageOther}
-                    </p>
-                  )}
-                </div>
-              )}
-            </div>
-
-            {/* Message */}
-
-            <textarea
-              name="message"
-              placeholder="Your Message (Optional)"
-              value={formData.message}
-              onChange={handleChange}
-              className="border rounded-lg px-4 py-2 w-full h-32"
-            ></textarea>
-
-            {/* Submit Button */}
+          {/* Submit */}
+          <div className="text-center">
             <button
               type="submit"
-              disabled={loading}
-              className={`bg-black hover:bg-red-600 text-white px-6 py-3 rounded-lg w-full sm:w-auto flex items-center justify-center gap-2 ${
-                loading ? "opacity-70 cursor-not-allowed" : ""
-              }`}
+              className="bg-black text-white px-8 py-3 rounded-xl hover:bg-gray-800 transition"
             >
-              {loading ? (
-                <>
-                  <svg
-                    className="animate-spin h-5 w-5 text-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                    ></path>
-                  </svg>
-                  Processing...
-                </>
-              ) : (
-                "Submit Booking"
-              )}
+              Submit Booking
             </button>
-          </form>
-        </div>
-
-        {/* Image Section */}
-        <div className="flex-1 flex items-center justify-center">
-          <Image
-            src="/images/s1.png"
-            alt="Studio"
-            width={500}
-            height={300}
-            className="w-full h-auto object-cover rounded-lg"
-          />
-        </div>
+          </div>
+        </form>
       </div>
 
       {/* Location */}
