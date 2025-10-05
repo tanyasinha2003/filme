@@ -17,6 +17,7 @@ export async function POST(req) {
       shootType,
       amenities,
       otherShootType,
+      otherRequests,
     } = data;
 
     const selected = selectedPlan || selectedSpecial;
@@ -35,9 +36,11 @@ export async function POST(req) {
       <p><strong>Amenities:</strong> ${
         amenities?.length ? amenities.join(", ") : "None"
       }</p>
+       <p><strong>Any Other Requests:</strong> ${otherRequests || "None"}</p>
     `;
 
     // Send email
+    // filmestudiogurgaon@gmail.com
     await resend.emails.send({
       from: "noreply@filmestudio.com", // must be verified in Resend
       to: "filmestudiogurgaon@gmail.com", // email where you want to receive booking info

@@ -26,6 +26,7 @@ export default function StudioBookingForm() {
     shootType: "",
     otherShootType: "", // <-- new field
     amenities: [],
+    otherRequests: "", // <-- new optional field
   });
 
   const studioPlans = [
@@ -59,6 +60,45 @@ export default function StudioBookingForm() {
     "Steam Iron",
     "Dyson Air Purifier",
   ];
+
+  // Inside your component, before return()
+  let shootTypeOptions = [
+    "reel",
+    "wedding",
+    "podcast",
+    "still",
+    "ad film",
+    "birthday shoot",
+    "brand shoot",
+    "product shoot",
+    "fashion shoot",
+    "other",
+  ];
+
+  // Apply restrictions if special package is selected
+  if (formData.selectedSpecial) {
+    switch (formData.selectedSpecial) {
+      case "Birthday Shoot":
+      case "College Memories":
+        shootTypeOptions = ["still", "reel", "video", "group (3-4 people)"];
+        break;
+      case "LinkedIn & Social Profiles":
+        shootTypeOptions = ["still", "reel", "video"];
+        break;
+      case "Wedding / Pre-Wedding":
+        shootTypeOptions = ["still", "video", "other"];
+        break;
+      default:
+        shootTypeOptions = [
+          "still",
+          "reel",
+          "video",
+          "podcast",
+          "ad film",
+          "other",
+        ];
+    }
+  }
 
   // 🟡 Preselect special package from search param
   useEffect(() => {
@@ -291,16 +331,11 @@ export default function StudioBookingForm() {
               required
             >
               <option value="">Select Type of Shoot</option>
-              <option value="reel">Reel</option>
-              <option value="wedding">Wedding</option>
-              <option value="podcast">Podcast</option>
-              <option value="still">Still</option>
-              <option value="ad film">Ad Film</option>
-              <option value="birthday shoot">Birthday Shoot</option>
-              <option value="brand shoot">Brand Shoot</option>
-              <option value="product shoot">Product Shoot</option>
-              <option value="fashion shoot">Fashion Shoot</option>
-              <option value="other">Other</option>
+              {shootTypeOptions.map((type) => (
+                <option key={type} value={type}>
+                  {type}
+                </option>
+              ))}
             </select>
 
             {/* Conditional field for "Other" */}
@@ -318,28 +353,30 @@ export default function StudioBookingForm() {
           </div>
 
           {/* Step 4: Optional Amenities (Checkboxes) */}
-          <div>
-            <label className="block text-sm font-semibold mb-3">
-              On Request Amenities{" "}
-              <span className="text-gray-500 text-sm">(optional)</span>
-            </label>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {amenitiesList.map((amenity) => (
-                <label
-                  key={amenity}
-                  className="flex items-center gap-2 border rounded-lg px-4 py-3 hover:bg-gray-50 cursor-pointer"
-                >
-                  <input
-                    type="checkbox"
-                    checked={formData.amenities.includes(amenity)}
-                    onChange={() => handleAmenityToggle(amenity)}
-                    className="w-4 h-4 accent-black"
-                  />
-                  <span className="text-gray-800">{amenity}</span>
-                </label>
-              ))}
+          {!formData.selectedSpecial && (
+            <div>
+              <label className="block text-sm font-semibold mb-3">
+                On Request Amenities{" "}
+                <span className="text-gray-500 text-sm">(optional)</span>
+              </label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {amenitiesList.map((amenity) => (
+                  <label
+                    key={amenity}
+                    className="flex items-center gap-2 border rounded-lg px-4 py-3 hover:bg-gray-50 cursor-pointer"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={formData.amenities.includes(amenity)}
+                      onChange={() => handleAmenityToggle(amenity)}
+                      className="w-4 h-4 accent-black"
+                    />
+                    <span className="text-gray-800">{amenity}</span>
+                  </label>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Step 5: Personal Info */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -418,6 +455,21 @@ export default function StudioBookingForm() {
                 <span className="text-gray-600 ml-2">Hours</span>
               </div>
             </div>
+          </div>
+
+          {/* Step 8: Any Other Requests */}
+          <div>
+            <label className="block text-sm font-semibold mb-2">
+              Any Other Requests (Optional)
+            </label>
+            <textarea
+              name="otherRequests"
+              placeholder="Write your message here..."
+              className="w-full border rounded-lg px-4 py-2"
+              value={formData.otherRequests}
+              onChange={handleChange}
+              rows={4}
+            ></textarea>
           </div>
 
           {/* Step 7: Summary */}
