@@ -531,7 +531,7 @@ export default function Home() {
           </div>
 
           {/* 2. Munna Bhai Package */}
-          <div>
+          {/* <div>
             <p className="text-2xl md:text-3xl  mb-2">
               🎥 2. The Munna Bhai Package (Studio + 2 Cameras) (Podcasts)
             </p>
@@ -553,7 +553,7 @@ export default function Home() {
                 <p className="text-gray-500 font-bold">₹3,000/hr</p>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* 3. Don Package */}
           <div>

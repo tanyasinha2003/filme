@@ -36,11 +36,11 @@ export default function StudioBookingForm() {
       desc: "Bright, bold, and full of life — bring your own gear.",
       price: "From ₹7,600",
     },
-    {
-      title: "Munna Bhai Package",
-      desc: "Perfect for podcasts & brand content.",
-      price: "From ₹16,000",
-    },
+    // {
+    //   title: "Munna Bhai Package",
+    //   desc: "Perfect for podcasts & brand content.",
+    //   price: "From ₹16,000",
+    // },
     {
       title: "Don Package",
       desc: "Built for creators who mean business.",
