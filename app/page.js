@@ -531,29 +531,31 @@ export default function Home() {
           </div>
 
           {/* 2. Munna Bhai Package */}
-          {/* <div>
+          <div>
             <p className="text-2xl md:text-3xl  mb-2">
               🎥 2. The Munna Bhai Package (Studio + 2 Cameras) (Podcasts)
             </p>
             <p className="text-gray-700 mb-4">
-              Perfect for creators, podcasts, and brand content that connects.
+              Perfect for creators, podcasts, and brand content that connects. <br></br>
+              2 Camera setup with 1 operator and mic.
             </p>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
               <div className="p-4  rounded-lg shadow-sm bg-gray-50">
                 <p className="font-semibold">4 Hours</p>
-                <p className="text-gray-500 font-bold">₹16,000</p>
+
+                <p className="text-gray-500 font-bold">₹50,000</p>
               </div>
               <div className="p-4  rounded-lg shadow-sm bg-gray-50">
                 <p className="font-semibold">8 Hours</p>
-                <p className="text-gray-500 font-bold">₹30,000</p>
+                <p className="text-gray-500 font-bold">₹90,000</p>
               </div>
               <div className="p-4  rounded-lg shadow-sm bg-gray-50">
                 <p className="font-semibold">Additional Hour</p>
-                <p className="text-gray-500 font-bold">₹3,000/hr</p>
+                <p className="text-gray-500 font-bold">₹5,000/hr</p>
               </div>
             </div>
-          </div> */}
+          </div>
 
           {/* 3. Don Package */}
           <div>
@@ -568,12 +570,12 @@ export default function Home() {
               <div className="p-4  rounded-lg shadow-sm bg-gray-50">
                 <p className="font-semibold">8hr Shoots</p>
                 <p>3-Camera setup + Operator + Lighting</p>
-                <p className="text-gray-500 font-bold">₹78,000</p>
+                <p className="text-gray-500 font-bold">₹90,000</p>
               </div>
               <div className="p-4  rounded-lg shadow-sm bg-gray-50">
-                <p className="font-semibold">12 Shoots</p>
+                <p className="font-semibold">12hr Shoots</p>
                 <p>3-Camera setup + Operator + Lighting</p>
-                <p className="text-gray-500 font-bold">₹1,10,000</p>
+                <p className="text-gray-500 font-bold">₹1,90,000</p>
               </div>
             </div>
           </div>
