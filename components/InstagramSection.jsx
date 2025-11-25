@@ -24,10 +24,11 @@ export default function InstagramSection() {
 
   // Replace with your Instagram reel video URLs or MP4s
   const videos = [
-    "/videos/review-1.mp4",
-    "/videos/review-2.mp4",
-    "/videos/review-3.mp4",
-    "/videos/review-4.mp4",
+    "/videos/reel-1.mp4",
+    "/videos/reel-2.mp4",
+    "/videos/reel-3.mp4",
+    "/videos/reel-4.mp4",
+    "/videos/reel-5.mp4",
   ];
 
   useEffect(() => {
