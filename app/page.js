@@ -823,7 +823,7 @@ export default function Home() {
       {/* Contact */}
       <section className="py-16 px-6 md:px-20 text-center">
         <h2 className="text-3xl md:text-5xl font-antonio mb-6">Contact Us</h2>
-        <p className="text-gray-700">Email: info@filmestudio.com</p>
+        <p className="text-gray-700">Email: filmestudiogurgaon@gmail.com</p>
         <p className="text-gray-700 mt-2">Phone: +91 96502 58881</p>
         <div className="mt-6">
           <button
